@@ -1,0 +1,9 @@
+{
+  "id": "ord_9f2c1a",
+  "status": "CONFIRMED",
+  "items": [
+    { "sku": "SKU-101", "quantity": 2 },
+    { "sku": "SKU-204", "quantity": 1 }
+  ],
+  "createdAt": "2026-11-24T09:15:00Z"
+}

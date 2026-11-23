@@ -1,0 +1,6 @@
+id: order-service
+owner: commerce-team
+repository: https://github.com/YOUR-ORG/order-service
+openapi_url: /services/orders/openapi.json
+version: v2
+status: active

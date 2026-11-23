@@ -1,0 +1,15 @@
+flowchart LR
+    C[Client] -->|POST /orders| O[order-service]
+    O -->|OrderCreated| B[Event Bus]
+    B --> P[payment-service]
+    B --> N[notification-service]
+    O -->|read/write| DB[(Orders DB)]
+
+    subgraph Commerce
+        O
+        P
+    end
+    subgraph Platform
+        B
+        N
+    end

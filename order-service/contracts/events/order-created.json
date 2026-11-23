@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.example.com/events/order-created/1.0.0",
+  "title": "OrderCreated",
+  "type": "object",
+  "required": ["eventId", "orderId", "status", "occurredAt"],
+  "properties": {
+    "eventId": { "type": "string" },
+    "orderId": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"]
+    },
+    "occurredAt": { "type": "string", "format": "date-time" }
+  }
+}

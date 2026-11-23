@@ -1,0 +1,45 @@
+name: documentation
+
+on:
+  pull_request:
+    paths:
+      - "order-service/contracts/**"
+      - "order-service/docs/**"
+      - "order-service/examples/**"
+      - "order-service/service.yaml"
+  push:
+    branches: [main]
+    paths:
+      - "order-service/contracts/**"
+      - "order-service/docs/**"
+      - "order-service/examples/**"
+      - "order-service/service.yaml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate OpenAPI + example
+        run: python scripts/validate-openapi.py
+
+      - name: Check documentation links
+        run: python scripts/check-links.py
+
+      # Hooks for the full pipeline (render diagrams / build docs / publish preview):
+      # - name: Render diagrams
+      #   run: npx -y @mermaid-js/mermaid-cli -i order-service/docs/architecture.mmd -o order-service/docs/architecture.svg
+      # - name: Build documentation
+      #   run: ./scripts/build-docs.sh
+      # - name: Publish preview
+      #   run: ./scripts/publish-preview.sh
